@@ -9,7 +9,7 @@ Requirements:
 - Preserve important technical terms
 - Remove repetition
 - Use simple language
-- Organize with bullet points
+- Organize with bullet points and headings
 - Do NOT add information not present in the material
 
 Study material:
@@ -30,6 +30,26 @@ Requirements:
 - Do NOT use information outside the material
 
 Study material:
+${content}
+`,
+
+  improve: (content: string) => `
+You are an academic writing assistant.
+
+Task: Improve the student's answer below while preserving its original meaning.
+
+Requirements:
+- Correct grammar and sentence structure
+- Improve clarity and organization
+- Use appropriate academic terminology
+- Do NOT add unsupported facts
+- Keep it suitable for a college examination
+
+Return in this format:
+1. Improved Answer
+2. Key Improvements (bullet list)
+
+Student answer:
 ${content}
 `,
 };
