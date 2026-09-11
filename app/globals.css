@@ -1,37 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot:wght@400&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #f8f9fa;
-  --foreground: #2d3748;
-  --primary: #667eea;
-  --primary-hover: #5a67d8;
-  --card-bg: #ffffff;
-  --border: #e2e8f0;
-  --muted: #718096;
+  --background: #092328;
+  --foreground: #ececec;
+  --primary: #2a835f;
+  --primary-hover: #12544f;
+  --card-bg: #2f2f2f;
+  --border: #424242;
+  --muted: #a0a0a0;
+  --accent: #8bbb92;
+  --font-heading: "GFS Didot", serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-card: var(--card-bg);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a202c;
-    --foreground: #e2e8f0;
-    --primary: #7c3aed;
-    --primary-hover: #6d28d9;
-    --card-bg: #2d3748;
-    --border: #4a5568;
-    --muted: #a0aec0;
+    --background: #092328;
+    --foreground: #ececec;
+    --primary: #2a835f;
+    --primary-hover: #12544f;
+    --card-bg: #2f2f2f;
+    --border: #424242;
+    --muted: #a0a0a0;
+    --accent: #8bbb92;
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(18, 84, 79, 0.75) 0%,
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(42, 131, 95, 0.45) 0%,
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(139, 187, 146, 0.18) 0%,
+      transparent 35%
+    ),
+    #092328;
+
+  background-attachment: fixed;
+  background-size: cover;
+
   color: var(--foreground);
-  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  transition: background-color 0.3s ease;
+
+  font-family:
+    var(--font-sans),
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  min-height: 100vh;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+::selection {
+  background: #8bbb92;
+  color: #092328;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #12544f;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a835f;
+}
+
+.gfs-didot-regular {
+  font-family: "GFS Didot", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: var(--font-heading);
+}
+
+.glass {
+  background: rgba(47, 47, 47, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(139, 187, 146, 0.15);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    #8bbb92 0%,
+    #2a835f 50%,
+    #12544f 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-bg {
+  background: linear-gradient(
+    135deg,
+    #092328 0%,
+    #12544f 55%,
+    #2a835f 100%
+  );
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #2a835f;
+  outline-offset: 2px;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
