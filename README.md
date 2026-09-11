@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LearnWise
 
-## Getting Started
+An AI study assistant. Paste your notes and get back a summary, a practice quiz, or a polished answer.
 
-First, run the development server:
+## Modes
+
+| Mode | What it does |
+| --- | --- |
+| **Summarize** | Condenses long notes into structured key points |
+| **Quiz** | Generates 5 multiple-choice questions with answers and explanations |
+| **Improve** | Rewrites a draft answer into clear, exam-ready academic writing |
+
+## Setup
+
+```bash
+npm install
+```
+
+Create a `.env.local` file in the project root:
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+Get a key from [Google AI Studio](https://aistudio.google.com/apikey).
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Next.js 16 · React 19 · TypeScript · Tailwind CSS v4 · Gemini API
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  page.tsx           UI
+  api/ai/route.ts    Validates input, calls Gemini
+components/          ModeSwitcher, ResultCard, Icons
+lib/prompts.ts       Prompt templates per mode
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Input is capped at 20–10,000 characters.
