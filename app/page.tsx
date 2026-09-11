@@ -101,8 +101,7 @@ export default function Home() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
-            Drop in your notes and turn them into tight summaries, practice
-            quizzes, or exam-ready answers.
+            Drop in your notes and turn them into tight summaries, practice quizzes, or exam-ready answers.
           </p>
         </div>
 
@@ -136,10 +135,10 @@ export default function Home() {
               <div className="h-px w-full bg-line">
                 <div
                   className={`h-px transition-[width,background-color] duration-500 ${overLimit
-                      ? 'bg-danger'
-                      : fillPct > 85
-                        ? 'bg-amber-400'
-                        : 'bg-sage/70'
+                    ? 'bg-danger'
+                    : fillPct > 85
+                      ? 'bg-amber-400'
+                      : 'bg-sage/70'
                     }`}
                   style={{ width: `${fillPct}%` }}
                 />
@@ -177,10 +176,10 @@ export default function Home() {
 
                   <span
                     className={`font-mono text-xs tabular-nums transition-colors ${overLimit
-                        ? 'text-danger'
-                        : fillPct > 85
-                          ? 'text-amber-400'
-                          : 'text-faint'
+                      ? 'text-danger'
+                      : fillPct > 85
+                        ? 'text-amber-400'
+                        : 'text-faint'
                       }`}
                   >
                     {count.toLocaleString()}
