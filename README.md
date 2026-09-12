@@ -1,5 +1,5 @@
 <h1>
-  <img src="./public/favicon.ico" alt="LearnWise logo" width="24" style="vertical-align: middle; margin-right: 8px;" />
+  <img src="./app/favicon.ico" alt="LearnWise logo" width="24" style="vertical-align: middle; margin-right: 8px;" />
   LearnWise
 </h1>
 
