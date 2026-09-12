@@ -22,7 +22,7 @@ const displaySerif = Instrument_Serif({
 export const metadata: Metadata = {
   title: "LearnWise — AI Study Assistant",
   description:
-    "Your AI-powered study companion for summarizing notes, generating quizzes, and sharpening answers.",
+    "Your AI-powered study companion for summarizing notes, generating quizzes, sharpening answers and explaining concepts.",
 };
 
 export const viewport: Viewport = {
