@@ -9,6 +9,7 @@ An AI study assistant. Paste your notes and get back a summary, a practice quiz,
 | **Summarize** | Condenses long notes into structured key points |
 | **Quiz** | Generates 5 multiple-choice questions with answers and explanations |
 | **Improve** | Rewrites a draft answer into clear, exam-ready academic writing |
+| **Explain Topic** | Enter any topic and get a beginner-friendly explanation in simple language. |
 
 ## Setup
 
