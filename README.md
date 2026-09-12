@@ -3,8 +3,6 @@
   LearnWise
 </h1>
 
-# LearnWise
-
 An AI study assistant. Paste your notes and get back a summary, a practice quiz, or a polished answer.
 
 ## Modes
