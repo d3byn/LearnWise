@@ -45,3 +45,6 @@ lib/prompts.ts       Prompt templates per mode
 ```
 
 Input is capped at 20–10,000 characters.
+
+
+*Project made for ShadowFox AI Engineer Virtual Internship*
