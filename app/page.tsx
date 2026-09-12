@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type KeyboardEvent } from 'react';
 import ResultCard from '@/components/ResultCard';
 import ModeSwitcher, { MODES } from '@/components/ModeSwitcher';
 import type { Mode } from '@/lib/prompts';
@@ -12,7 +12,8 @@ import {
 } from '@/components/Icons';
 
 const MAX_CHARS = 10000;
-const MIN_CHARS = 20;
+const DEFAULT_MIN_CHARS = 20;
+const EXPLAIN_MIN_CHARS = 3;
 
 const SAMPLE = `Photosynthesis is the process by which green plants, algae and some bacteria convert light energy into chemical energy. It takes place mainly in the chloroplasts, which contain the pigment chlorophyll. The process has two stages: the light-dependent reactions, which occur in the thylakoid membranes and produce ATP and NADPH, and the Calvin cycle, which occurs in the stroma and fixes carbon dioxide into glucose. Oxygen is released as a by-product when water molecules are split during the light-dependent reactions.`;
 
@@ -30,8 +31,9 @@ export default function Home() {
 
   const count = content.length;
   const trimmedLength = content.trim().length;
+  const minChars = mode === 'explain' ? EXPLAIN_MIN_CHARS : DEFAULT_MIN_CHARS;
   const overLimit = count > MAX_CHARS;
-  const tooShort = count > 0 && trimmedLength < MIN_CHARS;
+  const tooShort = count > 0 && trimmedLength < minChars;
   const fillPct = Math.min(100, (count / MAX_CHARS) * 100);
 
   const handleGenerate = async () => {
@@ -42,8 +44,8 @@ export default function Home() {
       setError('Please enter some content first.');
       return;
     }
-    if (trimmed.length < MIN_CHARS) {
-      setError(`Please enter at least ${MIN_CHARS} characters.`);
+    if (trimmed.length < minChars) {
+      setError(`Please enter at least ${minChars} characters.`);
       return;
     }
     if (count > MAX_CHARS) {
@@ -81,7 +83,7 @@ export default function Home() {
     setError('');
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !loading) {
       e.preventDefault();
       handleGenerate();
@@ -90,23 +92,21 @@ export default function Home() {
 
   return (
     <>
-
       <main className="mx-auto w-full max-w-6xl flex-1 px-5 pb-20 pt-12 sm:pt-16">
         <div className="mx-auto max-w-2xl text-center animate-rise">
-
           <h1 className="mt-3 font-display text-5xl leading-[1.05] sm:text-6xl">
-            <span className="gradient-text">|| LearnWise ||</span>
+            <span className="gradient-text"> || LearnWise || </span>
             <br />
             <span className="text-ink">study smarter, not longer.</span>
           </h1>
 
           <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-muted">
-            Drop in your notes and turn them into tight summaries, practice quizzes, or exam-ready answers.
+            Drop in your notes and turn them into tight summaries, practice quizzes, exam-ready answers or explanations.
           </p>
         </div>
 
         <div className="mt-12 grid items-start gap-6 lg:grid-cols-2">
-          {/* Composer  */}
+          {/* Composer */}
           <div
             className="space-y-4 animate-rise"
             style={{ animationDelay: '80ms' }}
@@ -117,7 +117,7 @@ export default function Home() {
 
             <div className="panel panel-lit overflow-hidden rounded-2xl">
               <label htmlFor="content" className="sr-only">
-                Study material
+                {active.inputLabel ?? 'Study material'}
               </label>
 
               <textarea
@@ -131,15 +131,11 @@ export default function Home() {
                 className="w-full resize-none bg-transparent px-5 py-5 text-[0.9375rem] leading-relaxed text-ink outline-none placeholder:text-faint"
               />
 
-              {/* Fill meter */}
               <div className="h-px w-full bg-line">
                 <div
-                  className={`h-px transition-[width,background-color] duration-500 ${overLimit
-                    ? 'bg-danger'
-                    : fillPct > 85
-                      ? 'bg-amber-400'
-                      : 'bg-sage/70'
-                    }`}
+                  className={`h-px transition-[width,background-color] duration-500 ${
+                    overLimit ? 'bg-danger' : fillPct > 85 ? 'bg-amber-400' : 'bg-sage/70'
+                  }`}
                   style={{ width: `${fillPct}%` }}
                 />
               </div>
@@ -170,17 +166,14 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   {tooShort && (
                     <span className="text-xs text-faint">
-                      {MIN_CHARS - trimmedLength} more characters
+                      {minChars - trimmedLength} more characters
                     </span>
                   )}
 
                   <span
-                    className={`font-mono text-xs tabular-nums transition-colors ${overLimit
-                      ? 'text-danger'
-                      : fillPct > 85
-                        ? 'text-amber-400'
-                        : 'text-faint'
-                      }`}
+                    className={`font-mono text-xs tabular-nums transition-colors ${
+                      overLimit ? 'text-danger' : fillPct > 85 ? 'text-amber-400' : 'text-faint'
+                    }`}
                   >
                     {count.toLocaleString()}
                     <span className="text-faint/60"> / 10,000</span>
@@ -225,7 +218,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Result  */}
+          {/* Result */}
           <div
             className="animate-rise lg:sticky lg:top-24"
             style={{ animationDelay: '160ms' }}
@@ -239,7 +232,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className=" px-5 py-6">
+      <footer className="px-5 py-6">
         <p className="mx-auto max-w-6xl text-center text-xs text-[var(--muted)]">
           Made by{' '}
           <a
