@@ -15,7 +15,6 @@ Requirements:
 Study material:
 ${content}
 `,
-
   quiz: (content: string) => `
 You are an AI study assistant.
 
@@ -32,7 +31,6 @@ Requirements:
 Study material:
 ${content}
 `,
-
   improve: (content: string) => `
 You are an academic writing assistant.
 
@@ -50,6 +48,21 @@ Return in this format:
 2. Key Improvements (bullet list)
 
 Student answer:
+${content}
+`,
+  explain: (content: string) => `
+You are an AI study assistant explaining topics to college students.
+
+Task: Explain the topic in a clear, structured way.
+
+Requirements:
+- Start with a simple explanation (2-3 sentences)
+- Provide a relatable analogy or example in a "Think of it like this" section
+- End with a key definition or takeaway
+- Use simple, clear language
+- Make it memorable and easy to understand
+
+Topic to explain:
 ${content}
 `,
 };
