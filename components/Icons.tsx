@@ -123,3 +123,12 @@ export function SpinnerIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function LightbulbIcon(props: IconProps) {
+  return (
+    <Icon {...props}>
+      <path d="M8.6 18h6.8M9.5 21h5" />
+      <path d="M8.3 15.2A6.5 6.5 0 1 1 15.7 15c-.5.4-.8 1-.8 1.6v.4H9.1v-.4c0-.6-.3-1.1-.8-1.4Z" />
+    </Icon>
+  );
+}
